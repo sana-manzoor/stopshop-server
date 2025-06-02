@@ -36,3 +36,18 @@ exports.allsprod = async (req, res) => {
         console.log(err)
     }
  }
+
+
+
+exports.viewproduct = async (req,res)=>{
+    const {id}=req.params
+    try{
+        console.log("inside productview")
+        const result=await products.find({_id:id})
+        console.log(result)
+        res.status(200).json(result)
+    }
+    catch(err){
+        res.status(401).json(err)
+    }
+}
