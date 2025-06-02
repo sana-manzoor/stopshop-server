@@ -1,27 +1,40 @@
-const mongoose=require('mongoose')
+const mongoose = require('mongoose')
 
-const prodSchema=new mongoose.Schema({
+const prodSchema = new mongoose.Schema({
 
-    title:{
+    title: {
+        type: String,
+        required: true
+    },
+    cid: {
+        type: Number,
+        required: true
+    },
+    sid:{
+        type:Number,
+        required:true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    image:{
         type:String,
         required:true
     },
-    cid:{
-        type:Number,
+    sname:{
+         type:String,
         required:true
-    },
-       price:{
-        type:Number,
-        required:true
-    },
-       description:{
-        type:Number,
-        required:true
+
     }
 
-   
+
 })
 
-const subcategories=mongoose.model('subcategories',subcategorySchema)
+const products = mongoose.model('products', prodSchema)
 
-module.exports=subcategories
+module.exports = products

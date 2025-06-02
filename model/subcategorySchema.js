@@ -9,6 +9,10 @@ const subcategorySchema=new mongoose.Schema({
     cid:{
         type:Number,
         required:true
+    },
+    sid:{
+        type:Number,
+        required:true
     }
 
    
