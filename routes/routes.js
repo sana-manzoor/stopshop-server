@@ -7,7 +7,7 @@ const prodController=require('../controller/prodController')
 const cartController=require('../controller/cartController')
 const wishController=require('../controller/wishController')
 const jwtMiddleware=require('../middleware/jwtMiddleware')
-
+const recentController=require('../controller/recentController')
 
 const router=new express.Router
 
@@ -19,6 +19,7 @@ router.get('/getsprod/:id',prodController.allsprod)
 
 //-------view prod-----
  router.get('/viewprod/:id',prodController.viewproduct)
+ router.get('/recom',prodController.latestp)
 
 
 //--------cart---------
@@ -28,8 +29,13 @@ router.get('/getcart/:id',jwtMiddleware,cartController.getcartlist)
  router.get('/deccart/:id',cartController.decQuantity)
 
 //---------wish----------
-router.post('/addwish',wishController.addToWish)
+router.post('/addwish',jwtMiddleware,wishController.addToWish)
 router.get('/getwish/:id',wishController.getwishlist)
+ router.delete('/delwish/:id',wishController.deletewish)
+
+//---------recents--------
+router.post('/addrecent',recentController.addrecent)
+router.get('/getrecent/:id',recentController.getrecents)
 
 
 module.exports=router

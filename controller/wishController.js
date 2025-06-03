@@ -1,6 +1,7 @@
 const wishes=require('../model/wishSchema')
 
 exports.addToWish=async(req,res)=>{
+    console.log("inside wish")
     const {pid,title,price,image,uid}=req.body
     
     try{
@@ -10,7 +11,7 @@ exports.addToWish=async(req,res)=>{
         }
         else{
             const newItem=new wishes({pid,title,price,image,uid})
-            newItem.save()
+            await newItem.save()
             res.status(201).json(newItem)
         }
     }
@@ -36,3 +37,23 @@ exports.getwishlist = async (req, res) => {
         console.log(err)
     }
 }
+
+
+
+
+exports.deletewish = async (req, res) => {
+    console.log("Inside wishdelete")
+    // res.send("userslist")
+    const {id}=req.params
+    try {
+        const data = await wishes.findByIdAndDelete({_id:id})
+        console.log(data)
+        res.status(200).json(data)
+
+    }
+    catch (err) {
+        res.status(401).json(err)
+    }
+ }
+
+ 

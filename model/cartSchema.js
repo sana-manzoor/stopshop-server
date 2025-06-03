@@ -38,6 +38,8 @@ const cartSchema=new mongoose.Schema({
    
 })
 
+cartSchema.index({ pid: 1, uid: 1 }, { unique: true })
+
 const carts=mongoose.model('carts',cartSchema)
 
 module.exports=carts

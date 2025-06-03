@@ -51,3 +51,25 @@ exports.viewproduct = async (req,res)=>{
         res.status(401).json(err)
     }
 }
+
+
+ exports.latestp = async (req, res) => {
+    console.log("Inside prodlist");
+
+    try {
+        // Fetch random products using aggregation
+        const data = await products.aggregate([
+            { $sample: { size: 4 } } 
+        ]);
+
+        console.log(data);
+        res.status(200).json(data);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "An error occurred while fetching products." });
+    }
+};
+
+
+
+
