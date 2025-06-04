@@ -31,7 +31,7 @@ const recentSchema = new mongoose.Schema({
     timestamps: true 
   })
 
-recentSchema.index({ pid: 1, uid: 1 }, { unique: true })
+recentSchema.index({  uid: 1 }, { unique: true })
 
 const recents = mongoose.model('recents', recentSchema)
 module.exports = recents

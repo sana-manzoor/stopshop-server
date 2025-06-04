@@ -5,18 +5,18 @@ exports.addrecent = async (req, res) => {
     const { pid, title, price, image, uid } = req.body
 
     try {
-        const excistingProduct = await recents.findOne({ pid, uid })
-        if (excistingProduct) {
-            res.status(406).json("Product already excists in recents")
-        }
-        else {
+        // const excistingProduct = await recents.findOne({ uid })
+        // if (excistingProduct) {
+        //     res.status(406).json("Product already excists in recents")
+        // }
+        // else {
             const newItem = new recents({ pid, title, price, image, uid })
             await recents.updateOne(
                 { pid, uid },
                 { $setOnInsert: { title, price, image } },
                 { upsert: true }
             );
-        }
+        // }
     }
     catch (err) {
         res.status(404).json(err)
